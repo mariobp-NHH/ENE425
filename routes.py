@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request
 from calculator import operation
 import smtplib
+import os
+
+# env variables
+EMAIL_I=os.environ.get("EMAIL_I",None)
 
 # Declare the app
 app = Flask(__name__,
@@ -22,7 +26,7 @@ def form():
 	#message = "Link to the newsletter: (https: // indd.adobe.com / view / e4780b8e-b6b6-4508-95a4-0bdf3d351b6f)."
 	server = smtplib.SMTP("smtp.gmail.com", 587)
 	server.starttls()
-	server.login("mblazquezdepaz@gmail.com", "7714LLUVIA!")
+	server.login("mblazquezdepaz@gmail.com", EMAIL_I)
 	server.sendmail("mblazquezdepaz@gmail.com", email, message)
 
 	return render_template('form.html', title='form', email=email)
