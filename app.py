@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from forms import AddRecordForm
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+app.config['SECRET_KEY'] = '3434345791628bb0b13ce0c676dfde280ba245'
 
 @app.route('/')
 @app.route('/home')
@@ -83,19 +83,12 @@ def app_calculator():
         form.scooter_co2.data = co2_scooter
         form.bicycle_co2.data = co2_bicycle
         form.walk_co2.data = co2_walk
-
-
         return render_template('app_calculator2.html', title='App Calculator', legend='App Calculator',
                                paragraph='(Based on the code developed by Gabriel Fuentes for the course ENE425)',
                                co2_bus=co2_bus, co2_car=co2_car, co2_plane=co2_plane, co2_ferry=co2_ferry, co2_motorbike=co2_motorbike,
                                co2_scooter=co2_scooter, co2_bicycle=co2_bicycle, co2_walk=co2_walk, form=form)
     return render_template('app_calculator.html', title='App Calculator', legend='App Calculator',
                                paragraph='(Based on the code developed by Gabriel Fuentes for the course ENE425)', form=form)
-
-@app.route('/app_calculator2')
-def app_calculator2():
-    form = AddRecordForm()
-    return render_template('app_calculator2.html', form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)
